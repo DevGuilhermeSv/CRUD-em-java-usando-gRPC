@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+service CarService {
+    rpc List (Empty) returns (CarList) {}
+    rpc Get (CarRequestId) returns (Car) {}
+    rpc Create (Car) returns (Car) {}
+    rpc Update (Car) returns (Car) {}
+    rpc Delete (CarRequestId) returns (Empty) {}
+}
+package proto;
+ 
+option java_multiple_files = true;
+message Empty {}
+
+message Car {
+    string id = 1;
+    string Nome = 2;
+    string Fabricacao = 3;
+    string anoModelo = 4;
+    string preco = 5;
+}
+
+message CarList {
+    repeated Car car = 1;
+}
+
+message CarRequestId {
+    string id = 1;
+}
