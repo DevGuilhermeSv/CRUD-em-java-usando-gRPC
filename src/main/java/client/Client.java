@@ -31,12 +31,19 @@ public class Client {
 		Car getCarResponse = carClient.get(CarRequestId.newBuilder().setId(userId).build());
 		System.out.println(getCarResponse.toString());
 
-		// DELETE USER
-		DeleteUserResponse deleteUserResponse = userClient.deleteUser(DeleteUserRequest.newBuilder().setUserId(userId).build());
-		System.out.println(deleteUserResponse.getUserId());
+		
 
 		// LIST USERS
 		 CarList listCarResponse = carClient.list(null);
 		 System.out.println(listCarResponse.getCarList());  
+
+		 //UPDATE CAR
+		Car newCar = Car.newBuilder().setNome("Palio").setId(userId).build();
+		 newCar = carClient.update(newCar);
+		 System.out.println("New car: \n"+ newCar.toString());
+
+		 // DELETE CAR
+		carClient.delete(CarRequestId.newBuilder().setId(userId).build());
+		System.out.println("Car Deleted");
 	}
 }

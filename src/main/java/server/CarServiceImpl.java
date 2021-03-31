@@ -82,7 +82,7 @@ public class CarServiceImpl extends CarServiceImplBase {
 		if (carMap.containsKey(Integer.parseInt(request.getId()))) {
             carMap.remove(Integer.parseInt(request.getId()));
             System.out.println("Car was deleted");
-            //responseObserver.onNext(DeleteUserResponse.newBuilder().setUserId(request.getUserId()).build());
+            responseObserver.onNext(null);
             responseObserver.onCompleted();
         } else {
             System.out.println("Car not found");
