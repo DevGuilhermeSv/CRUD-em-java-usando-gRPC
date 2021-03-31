@@ -6,6 +6,7 @@ import proto.Car;
 import proto.CarList;
 import proto.CarRequestId;
 import proto.CarServiceGrpc;
+import javax.swing.*;
 
 public class Client {
 
@@ -19,8 +20,12 @@ public class Client {
 		ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50051).usePlaintext().build();
 		CarServiceGrpc.CarServiceBlockingStub carClient = CarServiceGrpc.newBlockingStub(channel);
 
-		 // CREATE USER
-		Car car = Car.newBuilder().setNome("Monza").setAnoModelo("1999").setFabricacao("1998").setPreco("1200,00").build();
+		 // CREATE CAR
+		 String name = JOptionPane.showInputDialog("Nome do Carro: ");
+		 String anoModelo = JOptionPane.showInputDialog("Ano do Modelo: ");
+		 String Fabricacao = JOptionPane.showInputDialog("Ano de Fabricação: ");
+		 String preco = JOptionPane.showInputDialog("Preço do Carro: ");
+		Car car = Car.newBuilder().setNome(name).setAnoModelo(anoModelo).setFabricacao(Fabricacao).setPreco(preco).build();
 		Car createUserResponse = carClient.create(car);
 		System.out.println(createUserResponse.toString());
 
